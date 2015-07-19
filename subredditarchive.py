@@ -25,11 +25,11 @@ print "Wow by: /r/dogecoin"
 
 subName = 'dogecoin'
 r = praw.Reddit('searchandarchive')
-a = 'timestamp:1386460800..1386547200'
+a = 'timestamp:1391212800..1393632000'
 b = 'timestamp:'
-c = str(1386639720)
+c = str(1391212800)
 d = '..'
-e = str(1437240630)
+e = str(1393632000)
 r.config.store_json_result = True
 def main():
 	def my_range(start, end, step):
@@ -37,11 +37,11 @@ def main():
 			yield start
 			start += step
 
-	for c in my_range(1386641400, 1437240630, 30):
+	for c in my_range(1391212800, 1393632000, 30):
 		f = str(c)
 		g = str(c+30)
 		search_results = r.search(b+f+d+g, subreddit=subName, syntax='cloudsearch')
-		if c == 1437240630:
+		if c == 1393632000:
 			print 'Welp, all done here! Stopped at timestamp' , c
 			quit()
 		else:
