@@ -1,6 +1,9 @@
 # subredditarchive
 saves all .json data from posts and comments in a subreddit
 
+#Dependencies
+Reddit's PRAW: https://praw.readthedocs.org/en/v3.1.0/
+
 #What does it do?
 
 It searches from a given timestamp in reddit and downloads the .json data from the post and the top 200 comments in it.
