@@ -59,7 +59,7 @@ def getNew(subName,folderName):
     subreddit_posts = r.get_submissions(subName, limit=1000)
     for comment in subreddit_comment:
         print comment
-        url= comment.permalink
+        url= "https://reddit.com" + comment.permalink
         data= {'user-agent':'archive by /u/healdb'}
         #manually grabbing this file is much faster than loading the individual json files of every single comment, as this json provides all of it
         response = requests.get(url+'.json',headers=data)
@@ -71,7 +71,7 @@ def getNew(subName,folderName):
         #print post_json
     for post in subreddit_posts:
         print post
-        url1= post.permalink
+        url1= "https://reddit.com" + post.permalink
         #pprint(vars(post))
         data= {'user-agent':'archive by /u/healdb'}
         #manually grabbing this file is much faster than loading the individual json files of every single comment, as this json provides all of it
@@ -103,13 +103,13 @@ def main(startStamp,endStamp,step,folderName,subName,progress):
             e=' |'
         f = str(currentStamp)
         g = str(currentStamp+step)
-        search_results = r.search(b+f+d+g, subreddit=subName, syntax='cloudsearch')
+        search_results = r.subreddit(subName).search(b+f+d+g, syntax='cloudsearch')
         end=str((int((float(count)/float(progress)*20.0))*10)/2)+'%'
         print(('\n'*1000)+'Archiving posts and comments...\n['+'*'*int((float(count)/float(progress)*20.0))+'_'*(20-int(float(count)/float(progress)*20.0))+']'+end+e)
         count+=step
         for post in search_results:
             #print("---I found a post! It\'s called:" + str(post))
-            url= (post.permalink).replace('?ref=search_posts','')
+            url= "https://reddit.com" + (post.permalink).replace('?ref=search_posts','')
             #pprint(vars(post))
             data= {'user-agent':'archive by /u/healdb'}
             #manually grabbing this file is much faster than loading the individual json files of every single comment, as this json provides all of it
